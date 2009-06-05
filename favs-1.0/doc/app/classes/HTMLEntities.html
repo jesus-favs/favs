@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: HTMLEntities</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">HTMLEntities</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/html_entities_rb.html">
+                lib/html_entities.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+HTML entity encoding and decoding for Ruby
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000238">decode_entities</a>&nbsp;&nbsp;
+      <a href="#M000239">encode_entities</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="HTMLEntities/InstructionError.html" class="link">HTMLEntities::InstructionError</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000238" class="method-detail">
+        <a name="M000238"></a>
+
+        <div class="method-heading">
+          <a href="#M000238" class="method-signature">
+          <span class="method-name">decode_entities</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decode XML and HTML 4.01 entities in a string into their UTF-8 equivalents.
+Obviously, if your string is not already in UTF-8, you&#8216;d better
+convert it before using this method, or the output will be mixed up.
+</p>
+<p>
+Unknown named entities are not converted
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000238-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000238-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/html_entities.rb, line 92</span>
+92:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">decode_entities</span>(<span class="ruby-identifier">string</span>)
+93:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">NAMED_ENTITY_REGEXP</span>) { 
+94:       (<span class="ruby-identifier">cp</span> = <span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">MAP</span>[<span class="ruby-identifier">$1</span>]) <span class="ruby-operator">?</span> [<span class="ruby-identifier">cp</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U'</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">$&amp;</span> 
+95:     }.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;#([0-9]{1,7});|&amp;#x([0-9a-f]{1,6});/i</span>) { 
+96:       <span class="ruby-identifier">$1</span> <span class="ruby-operator">?</span> [<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U'</span>) <span class="ruby-operator">:</span> [<span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U'</span>) 
+97:     }
+98:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000239" class="method-detail">
+        <a name="M000239"></a>
+
+        <div class="method-heading">
+          <a href="#M000239" class="method-signature">
+          <span class="method-name">encode_entities</span><span class="method-args">(string, *instructions)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Encode codepoints into their corresponding entities. Various operations are
+possible, and may be specified in order:
+</p>
+<table>
+<tr><td valign="top">:basic :</td><td>Convert the five XML entities (&#8217;&quot;&lt;&gt;&amp;)
+
+</td></tr>
+<tr><td valign="top">:named :</td><td>Convert non-ASCII characters to their named HTML 4.01 equivalent
+
+</td></tr>
+<tr><td valign="top">:decimal :</td><td>Convert non-ASCII characters to decimal entities (e.g. &amp;1234;)
+
+</td></tr>
+<tr><td valign="top">:hexadecimal :</td><td>Convert non-ASCII characters to hexadecimal entities (e.g. # &amp;x12ab;)
+
+</td></tr>
+</table>
+<p>
+You can specify the commands in any order, but they will be executed in the
+order listed above to ensure that entity ampersands are not clobbered and
+that named entities are replaced before numeric ones.
+</p>
+<p>
+If no instructions are specified, :basic will be used.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  encode_entities(str) - XML-safe
+  encode_entities(str, :basic, :decimal) - XML-safe and 7-bit clean
+  encode_entities(str, :basic, :named, :decimal) - 7-bit clean, with all
+  non-ASCII characters replaced with their named entity where possible, and
+  decimal equivalents otherwise.
+</pre>
+<p>
+Note: It is the program&#8216;s responsibility to ensure that the string
+contains valid UTF-8 before calling this method.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000239-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000239-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/html_entities.rb, line 125</span>
+125:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">encode_entities</span>(<span class="ruby-identifier">string</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">instructions</span>)
+126:     <span class="ruby-identifier">output</span> = <span class="ruby-keyword kw">nil</span>
+127:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">instructions</span>.<span class="ruby-identifier">empty?</span>)
+128:       <span class="ruby-identifier">instructions</span> = [<span class="ruby-identifier">:basic</span>] 
+129:     <span class="ruby-keyword kw">else</span>
+130:       <span class="ruby-identifier">instructions</span> = <span class="ruby-identifier">instructions</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">instruction</span><span class="ruby-operator">|</span> 
+131:         <span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">ENCODE_ENTITIES_COMMAND_ORDER</span>[<span class="ruby-identifier">instruction</span>] <span class="ruby-operator">||</span> 
+132:         (<span class="ruby-identifier">raise</span> <span class="ruby-constant">InstructionError</span>, <span class="ruby-node">&quot;unknown encode_entities command `#{instruction.inspect}'&quot;</span>)
+133:       }
+134:     <span class="ruby-keyword kw">end</span>
+135:     <span class="ruby-identifier">instructions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">instruction</span><span class="ruby-operator">|</span>
+136:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">instruction</span>
+137:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:basic</span>
+138:         <span class="ruby-comment cmt"># Handled as basic ASCII</span>
+139:         <span class="ruby-identifier">output</span> = (<span class="ruby-identifier">output</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">string</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">BASIC_ENTITY_REGEXP</span>) {
+140:           <span class="ruby-comment cmt"># It's safe to use the simpler [0] here because we know</span>
+141:           <span class="ruby-comment cmt"># that the basic entities are ASCII.</span>
+142:           <span class="ruby-value str">'&amp;'</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">REVERSE_MAP</span>[<span class="ruby-identifier">$&amp;</span>[<span class="ruby-value">0</span>]] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">';'</span>
+143:         }
+144:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:named</span>
+145:         <span class="ruby-comment cmt"># Test everything except printable ASCII </span>
+146:         <span class="ruby-identifier">output</span> = (<span class="ruby-identifier">output</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">string</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF8_NON_ASCII_REGEXP</span>) {
+147:           <span class="ruby-identifier">cp</span> = <span class="ruby-identifier">$&amp;</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'U'</span>)[<span class="ruby-value">0</span>]
+148:           (<span class="ruby-identifier">e</span> = <span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">REVERSE_MAP</span>[<span class="ruby-identifier">cp</span>]) <span class="ruby-operator">?</span>  <span class="ruby-node">&quot;&amp;#{e};&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">$&amp;</span>
+149:         }
+150:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:decimal</span>
+151:         <span class="ruby-identifier">output</span> = (<span class="ruby-identifier">output</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">string</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF8_NON_ASCII_REGEXP</span>) {
+152:           <span class="ruby-node">&quot;&amp;##{$&amp;.unpack('U')[0]};&quot;</span>
+153:         }
+154:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:hexadecimal</span>
+155:         <span class="ruby-identifier">output</span> = (<span class="ruby-identifier">output</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">string</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">Data</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF8_NON_ASCII_REGEXP</span>) {
+156:           <span class="ruby-node">&quot;&amp;#x#{$&amp;.unpack('U')[0].to_s(16)};&quot;</span>
+157:         }
+158:       <span class="ruby-keyword kw">end</span> 
+159:     <span class="ruby-keyword kw">end</span>
+160:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">output</span>
+161:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<center> <h2> Stats: <%= params[:tags] %> </h2> </center>
+
+<div class="box-1">
+    <div class="side-a2">
+<div class="caja">
+  <div class="caja10">
+    <div class="box">
+      <b class="spiffy">
+        <b class="spiffy1"><b></b></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy5"></b>
+      </b> 
+      <div class="spiffy_content">
+        <br />
+<h3> Votes received by Blog </h3>
+<br />
+<div id="feevy_content">
+
+<% if @blogs %>
+  <% @blogs.each do |blog| %>
+    
+      <div class="feevy_content">
+        <a href="<%= blog[:url] %>"><%= blog[:title] %></a> <h4>Votos: <%= blog[:votes]%> </h4>
+      </div>
+    
+  <% end -%>
+<% end -%>
+</div>
+
+<br />
+      </div>
+      <b class="spiffy">
+        <b class="spiffy5"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy1"><b></b></b>
+      </b>
+    </div> 
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="side-b2">
+
+
+<div class="caja">
+  <div class="caja10">
+    <div class="box">
+      <b class="spiffy">
+        <b class="spiffy1"><b></b></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy5"></b>
+      </b> 
+      <div class="spiffy_content">
+        <br />
+<h3> Votes received by Post </h3>
+<br />
+
+<div class="feevy_content">
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <% if post[:votes]!= 0%>
+      <div class="feevy_content4">
+        <a href="<%= post[:url] %>"><%= post[:title] %></a> <h4>Votos: <%= post[:votes]%> </h4>
+      </div>
+    <%end%>
+  <% end -%>
+<% end -%>
+</div>
+<br />
+      </div>
+      <b class="spiffy">
+        <b class="spiffy5"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy1"><b></b></b>
+      </b>
+    </div> 
+  </div>
+</div>
+
+</div>
+
+<div class="side-c">
+
+
+
+<div class="caja">
+  <div class="caja10">
+    <div class="box">
+      <b class="spiffy">
+        <b class="spiffy1"><b></b></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy5"></b>
+      </b> 
+      <div class="spiffy_content">
+        <br />
+
+<h3> Votes cast by Student </h3>
+<br />
+<div class="feevy_content">
+<% if @pupils %>
+  <% @pupils.each do |pupil| %>
+    <div class="feevy_content4">
+        <a href="<%= pupil[:blog] %>"><%= pupil[:name] %></a> <h4>Votos: <%= pupil[:votes]%> </h4>
+      </div>
+  <% end -%>
+<% end -%>
+</div>
+<br />
+      </div>
+      <b class="spiffy">
+        <b class="spiffy5"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy1"><b></b></b>
+      </b>
+    </div> 
+</div>
+</div>
+
+
+</div>
+</div>
+
+<%link =  "http://favs.homelinux.org/report/users/" + params[:id].to_s + "/tag/" + params[:tags].to_s%>
+<center><h3><a href= "<%=link%>">Export stats as CSV file</a></h3></center>

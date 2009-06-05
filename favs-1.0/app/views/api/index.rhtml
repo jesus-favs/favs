@@ -1,0 +1,104 @@
+<h1>API Help</h1>
+<p>Here is the description of the different API calls you can use on Feevy.com</p>
+
+<h2>Methods available</h2>
+
+<p>IMPORTANT: you need to use POST method to send parameters to API</p>
+
+
+<h3>view_key</h3>
+<p>Display the key of the requested user
+  <ul>
+    <li>URL: <em>http://www.feevy.com/api/view_key</em></li>
+    <li>parameters: <em>user_email</em>; <em>user_password</em></li>
+    <li>returns: <em>api_key</em></li>
+    <li>errors: <em>500</em> when user_email/user_password is not valid</li>
+  </ul>
+</p>
+
+<h3>verify_key</h3>
+<p>You'll need a valid API key to use the API methods, you can use this method to verify the API key and fetch the username associated to this key
+  <ul>
+    <li>URL: <em>http://www.feevy.com/api/verify_key</em></li>
+    <li>parameters: <em>api_key</em></li>
+    <li>returns: <em>username</em></li>
+    <li>errors: <em>500</em> when api_key is not valid</li>
+  </ul>
+</p>
+
+<h3>list_feeds</h3>
+<p>Use this method to list the feeds associated to an user
+<ul>
+  <li>URL: <em>http://www.feevy.com/api/list_feeds</em></li>
+  <li>parameters: <em>api_key</em></li>
+  <li>returns: <a href='#xml_description'><em>xml desciption</em></a></li>
+  <li>errors: <em>500</em> when api_key is not valid</li>
+</ul>
+</p>
+
+<h3>add_feed</h3>
+<p>Use this method to add a blog in your Feevy
+<ul>
+  <li>URL: <em>http://www.feevy.com/api/add_feed</em></li>
+  <li>parameters: <em>api_key</em>; <em>url</em> &lt;- blog url</li>
+  <li>returns:</li>
+  <li>errors: <em>500</em> when api_key is not valid</li>
+</ul>
+</p>
+
+
+<h3>delete_feeds</h3>
+<p>Use this method to delete a feed from your Feevy
+<ul>
+  <li>URL: <em>http://www.feevy.com/api/delete_feeds</em></li>
+  <li>parameters: <em>api_key</em>; <em>feeds_id</em> &lt;- one or many feed id separated by a '+' symbol</li>
+  <li>returns:</li>
+  <li>errors: <em>500</em> when api_key is not valid</li>
+</ul>
+</p>
+
+<h3>edit_tags</h3>
+<p>Modify tag list of selected subscription
+<ul>
+  <li>URL: <em>http://www.feevy.com/api/edit_tags</em></li>
+  <li>parameters: <em>api_key</em>; <em>feed_id</em>; <em>tag_list</em> &lt;- one or many feed id separated by a '+' symbol</li>
+  <li>returns:</li>
+  <li>errors: <em>500</em> when api_key is not valid</li>
+</ul>
+</p>
+
+<h3>edit_avatar</h3>
+<p>Modify avatar url of selected subscription
+<ul>
+  <li>URL: <em>http://www.feevy.com/api/edit_avatar</em></li>
+  <li>parameters: <em>api_key</em>; <em>feed_id</em>; <em>avatar_url</em></li>
+  <li>returns:</li>
+  <li>errors: <em>500</em> when api_key is not valid</li>
+</ul>
+</p>
+
+<h3>register_user</h3>
+<p>Register a new user
+<ul>
+  <li>URL: <em>http://www.feevy.com/api/register_user</em></li>
+  <li>parameters: <em>api_key</em>; <em>user_email</em>; <em>user_password</em></li>
+  <li>returns:</li>
+  <li>errors: <em>500</em> when api_key is not valid</li>
+</ul>
+</p>
+
+<h2 id='xml_description'>Feevy xml desription</h2>
+
+Feevy xml return format:
+
+<blockquote>
+&lt;feevy user=&quot;#USERNAME&quot; api_key=&quot;#API_KEY&quot;&gt;<br/>
+  &lt;feed&gt;<br/>
+    &lt;id&gt;#FEED_ID&lt;/id&gt;<br/>
+    &lt;tags&gt;#FEED_TAGS&lt;/tags&gt;<br/>
+    &lt;name&gt;#FEED_NAME&lt;/name&gt;<br/>
+    &lt;url&gt;#FEED_URL&lt;/url&gt;<br/>
+  &lt;/feed&gt;<br/>
+  &lt;feed&gt; ...<br/>
+&lt;/feevy&gt;<br/>
+</blockquote>

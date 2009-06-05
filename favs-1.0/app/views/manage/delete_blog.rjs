@@ -1,0 +1,4 @@
+page.visual_effect :fade, "#{@deleted_blog}", :duration=>1
+page.delay(1) do
+  page.remove "#{@deleted_blog}"
+end

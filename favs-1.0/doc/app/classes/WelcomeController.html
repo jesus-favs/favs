@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: WelcomeController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">WelcomeController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/welcome_controller_rb.html">
+                app/controllers/welcome_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000187">coming_soon</a>&nbsp;&nbsp;
+      <a href="#M000188">dot_file</a>&nbsp;&nbsp;
+      <a href="#M000184">faq</a>&nbsp;&nbsp;
+      <a href="#M000182">index</a>&nbsp;&nbsp;
+      <a href="#M000185">privacy</a>&nbsp;&nbsp;
+      <a href="#M000183">terms</a>&nbsp;&nbsp;
+      <a href="#M000186">welcome</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000187" class="method-detail">
+        <a name="M000187"></a>
+
+        <div class="method-heading">
+          <a href="#M000187" class="method-signature">
+          <span class="method-name">coming_soon</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000187-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000187-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 69</span>
+69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">coming_soon</span>
+70:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+71:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000188" class="method-detail">
+        <a name="M000188"></a>
+
+        <div class="method-heading">
+          <a href="#M000188" class="method-signature">
+          <span class="method-name">dot_file</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000188-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000188-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 73</span>
+73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dot_file</span>
+74:     <span class="ruby-ivar">@subscriptions</span> = <span class="ruby-constant">Subscription</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>)
+75:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+76:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000184" class="method-detail">
+        <a name="M000184"></a>
+
+        <div class="method-heading">
+          <a href="#M000184" class="method-signature">
+          <span class="method-name">faq</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000184-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000184-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 10</span>
+10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">faq</span>
+11:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000182" class="method-detail">
+        <a name="M000182"></a>
+
+        <div class="method-heading">
+          <a href="#M000182" class="method-signature">
+          <span class="method-name">index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000182-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000182-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 3</span>
+3:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+4:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;welcome&quot;</span>
+5:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000185" class="method-detail">
+        <a name="M000185"></a>
+
+        <div class="method-heading">
+          <a href="#M000185" class="method-signature">
+          <span class="method-name">privacy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000185-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000185-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">privacy</span>
+14:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000183" class="method-detail">
+        <a name="M000183"></a>
+
+        <div class="method-heading">
+          <a href="#M000183" class="method-signature">
+          <span class="method-name">terms</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000183-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000183-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 7</span>
+7:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">terms</span>
+8:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000186" class="method-detail">
+        <a name="M000186"></a>
+
+        <div class="method-heading">
+          <a href="#M000186" class="method-signature">
+          <span class="method-name">welcome</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000186-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000186-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/welcome_controller.rb, line 16</span>
+16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">welcome</span>
+17:     
+18:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@feeds</span> = <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;welcome_feeds&quot;</span>)
+19:       <span class="ruby-ivar">@feeds</span> = <span class="ruby-value str">&quot;&quot;</span>
+20:       <span class="ruby-constant">Feed</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;created_at DESC&quot;</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">&quot;title IS NOT NULL&quot;</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">feed</span><span class="ruby-operator">|</span>
+21:         <span class="ruby-ivar">@feeds</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;a href='#{feed.href}'&gt;#{feed.title}&lt;/a&gt;&lt;br/&gt;&quot;</span>
+22:       <span class="ruby-keyword kw">end</span>
+23:       <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value str">&quot;welcome_feeds&quot;</span>, <span class="ruby-ivar">@feeds</span>, <span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+24:     <span class="ruby-keyword kw">end</span>
+25:     
+26:     <span class="ruby-comment cmt"># Get english rss from cache or from net</span>
+27:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@rss_english</span> = <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;rss_english&quot;</span>)
+28:       <span class="ruby-keyword kw">begin</span>
+29:         <span class="ruby-identifier">feed_item</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">open</span>(<span class="ruby-value str">'http://blog.feevy.com/feed/'</span>)).<span class="ruby-identifier">search</span>(<span class="ruby-value str">&quot;item&quot;</span>).<span class="ruby-identifier">first</span>
+30:         <span class="ruby-identifier">pubDate</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>((<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;pubDate&quot;</span>).<span class="ruby-identifier">inner_text</span>)
+31:         <span class="ruby-ivar">@rss_english</span> = <span class="ruby-node">&quot;&lt;p&gt;#{pubDate.day}.#{pubDate.month}.#{pubDate.year}&lt;p&gt;&lt;br/&gt;&quot;</span>
+32:         <span class="ruby-ivar">@rss_english</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;h4&gt;&quot;</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;title&quot;</span>).<span class="ruby-identifier">inner_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/h4&gt;&lt;br/&gt;&quot;</span>
+33:         <span class="ruby-ivar">@rss_english</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;h5&gt;&quot;</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;description&quot;</span>).<span class="ruby-identifier">inner_text</span>
+34:         <span class="ruby-ivar">@rss_english</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;a href=&quot;</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;link&quot;</span>).<span class="ruby-identifier">inner_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&gt;continue&lt;/a&gt;.&lt;/h5&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
+35:         <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value str">&quot;rss_english&quot;</span>, <span class="ruby-ivar">@rss_english</span>, <span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+36:       <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+37:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Error while reading english blog feed: #{err}&quot;</span>
+38:         <span class="ruby-ivar">@rss_english</span> = []
+39:       <span class="ruby-keyword kw">end</span>
+40:     <span class="ruby-keyword kw">end</span>
+41:     
+42:     <span class="ruby-comment cmt"># Get spanish rss from cache or from net</span>
+43:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@rss_spanish</span> = <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;rss_spanish&quot;</span>)
+44:       <span class="ruby-keyword kw">begin</span>
+45:         <span class="ruby-identifier">feed_item</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">open</span>(<span class="ruby-value str">'http://bitacora.feevy.com/feed/'</span>)).<span class="ruby-identifier">search</span>(<span class="ruby-value str">&quot;item&quot;</span>).<span class="ruby-identifier">first</span>
+46:         <span class="ruby-identifier">pubDate</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>((<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;pubDate&quot;</span>).<span class="ruby-identifier">inner_text</span>)
+47:         <span class="ruby-ivar">@rss_spanish</span> = <span class="ruby-node">&quot;&lt;p&gt;#{pubDate.day}.#{pubDate.month}.#{pubDate.year}&lt;p&gt;&lt;br/&gt;&quot;</span>
+48:         <span class="ruby-ivar">@rss_spanish</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;h4&gt;&quot;</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;title&quot;</span>).<span class="ruby-identifier">inner_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/h4&gt;&lt;br/&gt;&quot;</span>
+49:         <span class="ruby-ivar">@rss_spanish</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;h5&gt;&quot;</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;description&quot;</span>).<span class="ruby-identifier">inner_text</span>
+50:         <span class="ruby-ivar">@rss_spanish</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;a href=&quot;</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">feed_item</span><span class="ruby-operator">/</span><span class="ruby-value str">&quot;link&quot;</span>).<span class="ruby-identifier">inner_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&gt;continue&lt;/a&gt;.&lt;/h5&gt;&lt;br/&gt;&lt;br/&gt;&quot;</span>
+51:         <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value str">&quot;rss_spanish&quot;</span>, <span class="ruby-ivar">@rss_spanish</span>, <span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+52:       <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+53:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Error while reading spanish blog feed: #{err}&quot;</span>
+54:         <span class="ruby-ivar">@rss_spanish</span> = []
+55:       <span class="ruby-keyword kw">end</span>
+56:     <span class="ruby-keyword kw">end</span>
+57:     
+58:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@nb_users</span> = <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;nb_users&quot;</span>)
+59:       <span class="ruby-ivar">@nb_users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">count</span>
+60:       <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value str">&quot;nb_users&quot;</span>, <span class="ruby-ivar">@nb_users</span>, <span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+61:     <span class="ruby-keyword kw">end</span>
+62:     
+63:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@nb_feeds</span> = <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;nb_feeds&quot;</span>)
+64:       <span class="ruby-ivar">@nb_feeds</span> = <span class="ruby-constant">Feed</span>.<span class="ruby-identifier">count</span>
+65:       <span class="ruby-constant">CACHE</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value str">&quot;nb_feeds&quot;</span>, <span class="ruby-ivar">@nb_feeds</span>, <span class="ruby-value">60</span><span class="ruby-operator">*</span><span class="ruby-value">60</span>)
+66:     <span class="ruby-keyword kw">end</span>
+67:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

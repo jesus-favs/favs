@@ -1,0 +1,64 @@
+h1. FAVS
+
+FAVS allows teachers display content from their pupils' blogs at their website, and lets the students vote the best posts and check the stats with just one simple html tag
+
+Example of sites using FAVS
+
+http://planetral.blogspot.com
+
+
+h1. Requirements
+
+* memcached run as a daemon on default port (11211) - http://www.danga.com/memcached/
+* Ruby - http://www.ruby-lang.org/
+* Rubygems - http://rubyforge.org/frs/?group_id=126
+* GD2 library - http://www.boutell.com/gd/
+* gem list:
+** rails
+** hpricot
+** simple-rss
+** open-uri
+** timeout
+** cached_model
+** mongrel
+** gd2
+* Database (mysql, sqlite, ...)
+
+
+h1. Install
+
+h2. Get necessary gems
+
+<pre>
+<code>
+sudo gem install -y rails hpricot simple-rss open-uri timeout cached_model mongrel rfeedreader rfeedfinder
+</code>
+</pre>
+
+h2. Create and configure database.yml
+
+<pre>
+<code>
+cp config/database.yml.tmpl config/database.yml
+</code>
+</pre>
+
+h2. Install database schema
+
+<pre>
+<code>
+rake db:schema:dump
+</code>
+</pre>
+
+h1. Run
+
+In your FAVS rails directory: 
+
+<pre>
+<code>
+mongrel_rails start
+</code>
+</pre>
+
+"Access FAVS in your browser":http://localhost:3000

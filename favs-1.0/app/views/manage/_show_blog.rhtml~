@@ -1,0 +1,33 @@
+<!-- show blog -->
+<% feed = subscription.feed %>
+<% unless feed.nil? %>
+<div id="blog_<%= subscription.id %>" class="caja1">
+  <!-- caja redondeada negra -->
+  <div class="xsnazzy">
+    <b class="xtopb"><b class="xb1b"></b><b class="xb2b"></b><b class="xb3b"></b><b class="xb4b"></b></b>
+    <div class="xboxcontentb">
+      <!-- capa contenedora -->
+      <div class="show_blog">
+        <br/>
+        <!--<% if feed.avatar_locked == 1 and !feed.avatar.nil? %>
+          <img src='<%= feed.avatar.url %>' alt='current avatar' style='float:left;padding-right:5px;'/>
+        <% else %>
+          <img src='<%= subscription.avatar.url %>' alt='current avatar' style='float:left;padding-right:5px;'/>
+        <% end %> -->
+        <h3><%= "#{index}. #{feed.title}" %></h3>
+        <h5><%= truncate(feed.href, 50) %></h5>
+        <%= render :partial => 'tag_list', :locals => {:subscription => subscription } %>
+        <div id="blog_control_<%= subscription.id %>" class='right'>
+          <%= link_to_remote("change avatar", {:url => {:action => "edit_blog", :id => subscription.id }}) unless feed.avatar_locked == 1 %>
+          <%= link_to_remote "delete", {:url => {:action => "delete_blog", :id => subscription.id }} %>
+        </div>
+        <br/>
+      </div>
+      <br/>
+    </div>
+    <b class="xbottomb"><b class="xb4b"></b><b class="xb3b"></b><b class="xb2b"></b><b class="xb1b"></b></b>
+  </div>
+  <!-- end caja redondeada -->
+</div>
+<!-- end caja! -->
+<% end %>

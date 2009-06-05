@@ -1,0 +1,13 @@
+xml.opml do
+  xml.head do
+    xml.title "Feevy OPML"
+    xml.dateCreated Time.now
+  end
+  xml.body do
+    @subscriptions.each do |sub|
+      xml.outline :title => sub.feed.title,
+                  :xmlurl => sub.feed.link.gsub("&amp;", "&"),
+                  :htmlurl => sub.feed.href.gsub("&amp;", "&")
+    end
+  end
+end

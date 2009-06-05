@@ -1,0 +1,29 @@
+<h1>Feeds</h1>
+<form action='/admin/search_feed' method='post'>
+  <input type="text" name="search" value="" id="search"><input type="submit" value="Search &raquo;" id="some_name">
+</form>
+<br/>
+<ul>
+  <li><%= link_to "Display all feeds", :action => "feeds" %></li>
+  <li><%= link_to "Repair feeds", :action => "feed_repair" %></li>
+  <li><%= link_to "Remove duplicates", :action => "remove_duplicate_feeds" %></li>
+</ul>
+<form action="/admin/merge_duplicates" method="post" accept-charset="utf-8">
+  <label for='merged'>Feed id to merge: </label><input type="text" name="merged" value="" id="merged" size=5>
+  <label for='central'>Merge into feed id: </label><input type="text" name="central" value="" id="central" size=5>
+  <input type="submit" value="Merge &rarr;">
+</form>
+
+<h1>Subscriptions</h1>
+<ul>
+  <li><%= link_to "Clean Empty Subscriptions", :action => "clean_empty_subscription" %></li>
+</ul>
+
+<h1>Pingers</h1>
+<p><a href="http://www.feevy.com/ping/unlock_ping/1">Unlock master lock</a></p>
+<p><table border="0" cellspacing="5" cellpadding="5">
+	<tr><th>Name</th><th>Password</th><th>Ping count</th></tr>
+	<% @pingers.each do |ping| -%>
+		<tr><td><%= ping.name %></td><td><%= ping.password %></td><td><%= ping.total_count %></td></tr>
+	<% end -%>
+</table></p>

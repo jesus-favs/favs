@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: AuthHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">AuthHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/helpers/auth_helper_rb.html">
+                app/helpers/auth_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000212">account_infos</a>&nbsp;&nbsp;
+      <a href="#M000211">ajax_account_infos</a>&nbsp;&nbsp;
+      <a href="#M000216">auth_icon</a>&nbsp;&nbsp;
+      <a href="#M000210">full_template_path</a>&nbsp;&nbsp;
+      <a href="#M000213">js_account_infos</a>&nbsp;&nbsp;
+      <a href="#M000209">search_paths</a>&nbsp;&nbsp;
+      <a href="#M000215">spinner_tag</a>&nbsp;&nbsp;
+      <a href="#M000214">store_location</a>&nbsp;&nbsp;
+      <a href="#M000217">user_icon</a>&nbsp;&nbsp;
+      <a href="#M000218">user_info_icon_subpart</a>&nbsp;&nbsp;
+      <a href="#M000219">user_logged_in?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="AuthHelper/Utils.html" class="link">AuthHelper::Utils</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000212" class="method-detail">
+        <a name="M000212"></a>
+
+        <div class="method-heading">
+          <a href="#M000212" class="method-signature">
+          <span class="method-name">account_infos</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Show user information, don&#8216;t use for static or cached page!
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000212-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000212-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 48</span>
+48:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">account_infos</span>()
+49:                 <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;auth/remotelogin&quot;</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'auth'</span>)
+50:                 <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-value str">'function showloginform() {'</span><span class="ruby-operator">+</span> <span class="ruby-identifier">update_element_function</span>(<span class="ruby-value str">&quot;accountinfo&quot;</span>, <span class="ruby-identifier">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">txt</span>) <span class="ruby-operator">+</span>
+51:                 <span class="ruby-value str">' document.getElementById(\'post_login\').focus();}'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;!-- account info --&gt; &lt;div id=\&quot;accountinfo\&quot;&gt;&quot;</span><span class="ruby-operator">+</span>
+52:                 <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;auth/remoteinfo&quot;</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'auth'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>
+53:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000211" class="method-detail">
+        <a name="M000211"></a>
+
+        <div class="method-heading">
+          <a href="#M000211" class="method-signature">
+          <span class="method-name">ajax_account_infos</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Show user informations using Ajax. Can be used on static pages / cached
+pages.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000211-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000211-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 39</span>
+39:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ajax_account_infos</span>()
+40:                 <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;auth/remotelogin&quot;</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'auth'</span>)
+41:                 <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-value str">'function showloginform() {'</span><span class="ruby-operator">+</span> <span class="ruby-identifier">update_element_function</span>(<span class="ruby-value str">&quot;accountinfo&quot;</span>, <span class="ruby-identifier">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">txt</span>) <span class="ruby-operator">+</span>
+42:                                 <span class="ruby-value str">' document.getElementById(\'post_login\').focus();}'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;!-- account info --&gt; &lt;div id=\&quot;accountinfo\&quot;&gt;&quot;</span><span class="ruby-operator">+</span>
+43:                                 <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">auth_icon</span>(<span class="ruby-value str">'buddy'</span>), <span class="ruby-identifier">auth_url</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span> <span class="ruby-operator">+</span> 
+44:                                 <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-value str">&quot;new Ajax.Updater('accountinfo', '/auth/remoteinfo', {asynchronous:true});&quot;</span>)
+45:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000216" class="method-detail">
+        <a name="M000216"></a>
+
+        <div class="method-heading">
+          <a href="#M000216" class="method-signature">
+          <span class="method-name">auth_icon</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+auth_generator&#8216;s images tags
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000216-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000216-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">auth_icon</span>(<span class="ruby-identifier">name</span>)
+77:                 <span class="ruby-identifier">image_tag</span>(<span class="ruby-node">&quot;auth/#{name}&quot;</span>, <span class="ruby-identifier">:align</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'absmiddle'</span>, <span class="ruby-identifier">:border</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:alt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>)
+78:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000210" class="method-detail">
+        <a name="M000210"></a>
+
+        <div class="method-heading">
+          <a href="#M000210" class="method-signature">
+          <span class="method-name">full_template_path</span><span class="method-args">(template_path, extension)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000210-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000210-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 9</span>
+ 9:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">full_template_path</span>(<span class="ruby-identifier">template_path</span>, <span class="ruby-identifier">extension</span>)
+10:                 <span class="ruby-identifier">template_path_dirs</span> = <span class="ruby-identifier">template_path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)
+11:                 <span class="ruby-identifier">dir</span> = <span class="ruby-identifier">template_path_dirs</span>[<span class="ruby-value">0</span>]
+12:                 <span class="ruby-identifier">template_path_dirs</span>.<span class="ruby-identifier">shift</span>
+13:                 <span class="ruby-identifier">file</span> = <span class="ruby-identifier">template_path_dirs</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)
+14:                 <span class="ruby-identifier">search_paths</span>(<span class="ruby-identifier">dir</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+15:                         <span class="ruby-identifier">themed_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@base_path</span>, <span class="ruby-identifier">path</span>, <span class="ruby-node">&quot;#{file}.#{extension}&quot;</span>)
+16:                         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">themed_path</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">themed_path</span>)
+17:                 <span class="ruby-keyword kw">end</span>
+18:                 <span class="ruby-keyword kw">super</span>
+19:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000213" class="method-detail">
+        <a name="M000213"></a>
+
+        <div class="method-heading">
+          <a href="#M000213" class="method-signature">
+          <span class="method-name">js_account_infos</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Javascript version to show user information. Can be used on static pages /
+cached pages.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000213-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000213-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 56</span>
+56:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">js_account_infos</span>()
+57:                 <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;auth/remotelogin&quot;</span>, <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'auth'</span>)
+58:                 <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-value str">'function showloginform() {'</span><span class="ruby-operator">+</span> <span class="ruby-identifier">update_element_function</span>(<span class="ruby-value str">&quot;accountinfo&quot;</span>, <span class="ruby-identifier">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">txt</span>) <span class="ruby-operator">+</span>
+59:                 <span class="ruby-value str">' document.getElementById(\'post_login\').focus();}'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;!-- account info --&gt; &lt;div id=\&quot;accountinfo\&quot;&gt;&quot;</span> <span class="ruby-operator">+</span>
+60:                 <span class="ruby-value str">&quot;&lt;script src=\&quot;/auth/jsinfo\&quot; type=\&quot;text/javascript\&quot;&gt;&lt;/script&gt;&quot;</span><span class="ruby-operator">+</span>
+61:                 <span class="ruby-value str">'&lt;script type=&quot;text/javascript&quot;&gt;displayAccountInfo();&lt;/script&gt;'</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>
+62:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000209" class="method-detail">
+        <a name="M000209"></a>
+
+        <div class="method-heading">
+          <a href="#M000209" class="method-signature">
+          <span class="method-name">search_paths</span><span class="method-args">(path)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+For theme support. Idea from Typo.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000209-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000209-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 4</span>
+4:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search_paths</span>(<span class="ruby-identifier">path</span>)
+5:                 [<span class="ruby-node">&quot;#{path}/theme/#{this_auth[:theme]}/&quot;</span>,
+6:                 ]
+7:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000215" class="method-detail">
+        <a name="M000215"></a>
+
+        <div class="method-heading">
+          <a href="#M000215" class="method-signature">
+          <span class="method-name">spinner_tag</span><span class="method-args">(id = 'ident')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Loading spinner indicator icon tag
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000215-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000215-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">spinner_tag</span>(<span class="ruby-identifier">id</span> = <span class="ruby-value str">'ident'</span>)
+72:                 <span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">'auth/spinner.gif'</span>, <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-node">&quot;#{id}_spinner&quot;</span>, <span class="ruby-identifier">:align</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'absmiddle'</span>, <span class="ruby-identifier">:border=</span><span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:style=</span><span class="ruby-operator">&gt;</span> <span class="ruby-value str">'display: none;'</span>, <span class="ruby-identifier">:alt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'loading...'</span> )
+73:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000214" class="method-detail">
+        <a name="M000214"></a>
+
+        <div class="method-heading">
+          <a href="#M000214" class="method-signature">
+          <span class="method-name">store_location</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+store current uri in the ccokies we can return to this location by calling
+return_location
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000214-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000214-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">store_location</span>
+67:     <span class="ruby-identifier">cookies</span>[<span class="ruby-identifier">:return_to</span>] = {<span class="ruby-identifier">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">request_uri</span>, <span class="ruby-identifier">:expires</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span> }
+68:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000217" class="method-detail">
+        <a name="M000217"></a>
+
+        <div class="method-heading">
+          <a href="#M000217" class="method-signature">
+          <span class="method-name">user_icon</span><span class="method-args">(login, email)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+image tag for user
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000217-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000217-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 81</span>
+81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user_icon</span>(<span class="ruby-identifier">login</span>, <span class="ruby-identifier">email</span>)
+82:                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@app</span>[<span class="ruby-identifier">:gravatar</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+83:                         <span class="ruby-identifier">site_url</span> = <span class="ruby-ivar">@app</span>[<span class="ruby-identifier">:url</span>].<span class="ruby-identifier">chomp</span>(<span class="ruby-value str">'/'</span>)
+84:                         <span class="ruby-identifier">default</span> = <span class="ruby-identifier">html_escape</span> <span class="ruby-node">&quot;#{site_url}#{@app[:default_icon]}&quot;</span>
+85:                         <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5.hexdigest(email)}&amp;size=#{@app[:icon_size]}&amp;default=#{default}&quot;</span>
+86:                         <span class="ruby-identifier">image_tag</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">:align</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'absmiddle'</span>, <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@app</span>[<span class="ruby-value str">'icon_size'</span>], <span class="ruby-identifier">:border</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:alt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'icon for '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">login</span>)
+87:                 <span class="ruby-keyword kw">else</span>
+88:                         <span class="ruby-identifier">image_tag</span>(<span class="ruby-identifier">auth_url</span>(<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'image'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">login</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'.png'</span>), <span class="ruby-identifier">:align</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'absmiddle'</span>, <span class="ruby-identifier">:border</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:alt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'icon for '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">login</span>)
+89:                 <span class="ruby-keyword kw">end</span>
+90:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000218" class="method-detail">
+        <a name="M000218"></a>
+
+        <div class="method-heading">
+          <a href="#M000218" class="method-signature">
+          <span class="method-name">user_info_icon_subpart</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+For the user form, if gravatar is used, no file upload!
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000218-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000218-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 93</span>
+93:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user_info_icon_subpart</span>
+94: <span class="ruby-identifier">res</span> = <span class="ruby-value str">&quot;&lt;tr&gt;&lt;td&gt;\n  &lt;label for=\&quot;post_login\&quot;&gt;Your icon&lt;/label&gt;\n&lt;/td&gt;&lt;td&gt;\n  &lt;%= file_field \&quot;post\&quot;, \&quot;picture\&quot;, :size =&gt; 20, :class=&gt;\&quot;form\&quot; %&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n\n&lt;tr&gt;\n   &lt;td colspan=\&quot;2\&quot;&gt;\n      Note: Your icon buddy must be &lt;%= @app[:icon_size] %&gt;x&lt;%= @app[:icon_size]%&gt; or it won't be saved.\n   &lt;/td&gt;\n&lt;/tr&gt;\n&quot;</span>
+95:                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@app</span>[<span class="ruby-identifier">:gravatar</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+96:                         <span class="ruby-identifier">res</span> = <span class="ruby-value str">'&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;This website use &lt;a href=&quot;http://www.gravatar.com&quot;&gt;gravatar&lt;/a&gt; icons.&lt;/td&gt;&lt;/tr&gt;'</span>
+97:                 <span class="ruby-keyword kw">end</span>
+98:                 <span class="ruby-identifier">res</span>
+99:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000219" class="method-detail">
+        <a name="M000219"></a>
+
+        <div class="method-heading">
+          <a href="#M000219" class="method-signature">
+          <span class="method-name">user_logged_in?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000219-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000219-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/auth_helper.rb, line 116</span>
+116:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user_logged_in?</span>
+117:                 <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">ident</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+118:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

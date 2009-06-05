@@ -1,0 +1,26 @@
+<div id="feevy_bar_<%= id %>">
+<div class="bar_content">
+<% if @entries %>
+<% @entries.each do |post| %>
+<div class="feevy_item">
+<div class="item_content">
+<div class="feevy_title">
+
+<h1><a href="<%= post[:post_url] %>"><%= post[:title] %></a></h1>
+</div>
+<div class="feevy_content">
+<%= post[:texto] %>&nbsp;<a href="<%= post[:post_url] %>">read more</a>
+</div>
+<div class="feevy_content">
+<a href="<%= post[:vote] %>">Vote this post</a>
+</div>
+<a class="blog_url" href="<%= post[:blog_url] %>"><%= post[:name] %></a>
+</div>
+</div>
+<% end -%>
+<% end -%>
+<div class="footer"> <h3><a href="<%= @stats_link %>">Stats</a></h3>
+<h3> If you are a student from this subject you may want to <a href="<%= @join_link %>">join this FAVS</a></h3>
+<p> FAVS is a free service<a href="http://favs.homelinux.org"> Get yours!</a><p/></div>
+</div>
+</div>

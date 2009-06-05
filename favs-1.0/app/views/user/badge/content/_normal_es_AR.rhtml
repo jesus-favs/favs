@@ -1,0 +1,34 @@
+<div id="feevy_bar_<%= id %>">
+<b class="bar_top"><b class="bar_round_1"></b><b class="bar_round_2"></b><b class="bar_round_3"></b><b class="bar_round_4"></b></b>
+<div class="bar_content">
+<% if @entries %>
+<% @entries.each do |post| %>
+<div class="feevy_item">
+<b class="item_top"><b class="item_round_1"></b><b class="item_round_2"></b><b class="item_round_3"></b><b class="item_round_4"></b></b>
+<div class="item_content">
+<div class="feevy_title">
+
+<h1><a href="<%= post[:post_url] %>"><%= post[:title] %></a></h1>
+</div>
+<div class="feevy_content">
+<%= post[:texto] %>&nbsp;<a href="<%= post[:post_url] %>">Sigue leyendo</a>
+</div>
+<div class="feevy_content">
+Fecha: <%= post[:date].strftime('%d-%m-%Y') %>
+</div>
+<div class="feevy_content">
+<a href="<%= post[:vote] %>" target="_blank">Vota este post</a>
+</div>
+<a class="blog_url" href="<%= post[:blog_url] %>"><%= post[:name] %></a> 
+<br/>
+</div>
+<b class="item_bottom"><b class="item_round_4"></b><b class="item_round_3"></b><b class="item_round_2"></b><b class="item_round_1"></b></b>
+</div>
+<% end -%>
+<% end -%>
+<div class="footer"> <h3><a href="<%= @stats_link %>">Estad&iacute;sticas</a></h3>
+<h3> Si eres alumno de esta clase quiz&aacute;s quieras <a href="<%= @join_link %>">dar de alta tu blog</a></h3>
+<p> FAVS es libre, <a href="http://favs.homelinux.org">consigue el tuyo!</a><p/></div>
+</div>
+<b class="bar_bottom"><b class="bar_round_4"></b><b class="bar_round_3"></b><b class="bar_round_2"></b><b class="bar_round_1"></b></b>
+</div>
