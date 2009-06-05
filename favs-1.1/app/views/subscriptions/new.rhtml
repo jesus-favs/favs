@@ -1,0 +1,65 @@
+<div class="caja">
+  <div class="caja10">
+    <div class="box">
+      <b class="spiffy">
+        <b class="spiffy1"><b></b></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy5"></b>
+      </b> 
+      <div class="spiffy_content">
+        <br />
+<%= error_messages_for 'subscription'%>
+
+
+<%if params[:mail].nil? or params[:name].nil? or params[:blog].nil?%>
+  
+  <form class='new_subscription' >
+	  <div id='add_subscription_input'>
+            <p><b>Blog url:</b> 
+		<br/>
+		<input type='text' name='blog' size='27' id='blog'/></p>
+          </div>
+
+	  <div id='add_subscription_input'>
+            <p><b>Email:</b> 
+		<br/>
+		<input type='text' name='mail' size='27' id='mail'/></p>
+          </div>
+
+
+
+          <div id='add_subscription_input'>
+            <p><b>Name:</b> 
+		<br/>
+		<input type='text' name='name' size='27' id='name'/></p>
+          </div>
+	
+	
+	
+	<input type='submit' class='submit' value='Join!' id='boton2' onclick="Element.show('waiting_blog');"/>
+		  <div id='waiting_blog' class='waiting' style='display:none;'>creating your subscription<img alt="spinner" src="/images/spinner.gif"/></div>
+</form>
+
+<% end %>
+<br />
+
+
+      </div>
+      <b class="spiffy">
+        <b class="spiffy5"></b>
+        <b class="spiffy4"></b>
+        <b class="spiffy3"></b>
+        <b class="spiffy2"><b></b></b>
+        <b class="spiffy1"><b></b></b>
+      </b>
+    </div> 
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+<center><p>Have you decided about the license you will use in your blog? <br/>
+Take a look at <a href='http://creativecommons.org/license/'>Creative Commons</a></p></center> <br/>

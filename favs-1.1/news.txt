@@ -1,0 +1,9 @@
+In this version there are some new features:
+
+- Teachers can vote
+- Stats are available to be downloaded in a CSV file
+- Teachers can edit their students data
+
+And we have fixed an important bug:
+
+- When a student edits an old post, in the previous version of FAVS, there were a little probability that the planet includes that post time and tiem again. That problem is fixed in this new version.

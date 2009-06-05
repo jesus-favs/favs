@@ -1,0 +1,31 @@
+
+<%= error_messages_for 'vote'%>
+
+
+<%if params[:mail].nil? %>
+  <h2>You will vote for:</h2>
+
+  <% post = Post.find_by_id(params[:id]).title%>
+  <% blog = Post.find_by_id(params[:id]).feed.title%>
+
+  <h3>Blog: <%= blog%></h3>
+  <h3>Post: <%= post%></h3>
+
+
+
+  <form class='new_vote' >
+          <div id='add_vote_input'>
+            <p><b>Please introduce your email:</b> 
+		<br/>
+		<input type='text' name='mail' size='27' id='mail'/></p>
+          </div>
+	
+	
+	
+	<input type='submit' class='submit' value='Vote!' id='boton2' onclick="Element.show('waiting_blog');"/>
+		  <div id='waiting_blog' class='waiting' style='display:none;'>saving your vote<img alt="spinner" src="/images/spinner.gif"/></div>
+</form>
+
+<% end %>
+
+

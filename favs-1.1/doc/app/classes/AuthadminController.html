@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AuthadminController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AuthadminController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/authadmin_controller_rb.html">
+                app/controllers/authadmin_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000055">createuser</a>&nbsp;&nbsp;
+      <a href="#M000056">deldomain</a>&nbsp;&nbsp;
+      <a href="#M000051">deluser</a>&nbsp;&nbsp;
+      <a href="#M000053">editdomains</a>&nbsp;&nbsp;
+      <a href="#M000052">edituser</a>&nbsp;&nbsp;
+      <a href="#M000049">index</a>&nbsp;&nbsp;
+      <a href="#M000050">list</a>&nbsp;&nbsp;
+      <a href="#M000054">newuser</a>&nbsp;&nbsp;
+      <a href="#M000058">theme_layout</a>&nbsp;&nbsp;
+      <a href="#M000057">this_auth</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="#M000055" class="method-signature">
+          <span class="method-name">createuser</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to create user
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 134</span>
+134:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">createuser</span> 
+135:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+136:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:password</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:passwordbis</span>]
+137:                         <span class="ruby-ivar">@newuser</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+138:                         <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">login</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:login</span>]
+139:                         <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:password</span>]
+140:                         <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">confirmed</span> = <span class="ruby-value">1</span>
+141:                         <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">ipaddr</span> = <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">remote_ip</span>
+142:                         <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">domains</span> = { <span class="ruby-value str">'USERS'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> }
+143:                         <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:email</span>]
+144:                         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@newuser</span>.<span class="ruby-identifier">save</span>
+145:                                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:notify</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+146:                                         <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">deliver_admin_newuser</span>(<span class="ruby-ivar">@newuser</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:password</span>], <span class="ruby-ivar">@app</span>)
+147:                                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-value str">&quot;The user has been saved, a notify has been sent&quot;</span>
+148:                                 <span class="ruby-keyword kw">else</span>
+149:                                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-value str">&quot;The user has been saved&quot;</span>
+150:                                 <span class="ruby-keyword kw">end</span>
+151:                         <span class="ruby-keyword kw">else</span>
+152:                                 <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-value str">&quot;An error occured to save the user&quot;</span>
+153:                         <span class="ruby-keyword kw">end</span>
+154:                 <span class="ruby-keyword kw">else</span>
+155:                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-value str">&quot;Password don't match!&quot;</span>
+156:                 <span class="ruby-keyword kw">end</span>
+157:                 
+158:                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">xhr?</span>
+159:                         <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+160:                 <span class="ruby-keyword kw">end</span>
+161:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">deldomain</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to delete a domain
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 164</span>
+164:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deldomain</span>
+165:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+166:                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>].<span class="ruby-identifier">nil?</span>
+167:                         <span class="ruby-identifier">id</span>,<span class="ruby-identifier">domain</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>,<span class="ruby-value">2</span>)
+168:                         <span class="ruby-ivar">@edituser</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_first</span>([<span class="ruby-value str">&quot;id = ?&quot;</span>,<span class="ruby-identifier">id</span>])
+169:                         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">domains</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">domain</span>
+170:                                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">login</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">login</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">domain</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;ADMIN&quot;</span>
+171:                                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'note'</span>] = <span class="ruby-value str">&quot;You can't remove yourself from admin!&quot;</span>
+172:                                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">domain</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;ADMIN&quot;</span>
+173:                                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'note'</span>] = <span class="ruby-value str">&quot;You can't remove that user from admin!&quot;</span>
+174:                                 <span class="ruby-keyword kw">else</span>
+175:                                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">domains</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">domain</span>)
+176:                                         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">save</span>
+177:                                                 <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'note'</span>] = <span class="ruby-value str">&quot;An error occured while saving the user&quot;</span>
+178:                                         <span class="ruby-keyword kw">end</span>
+179:                                 <span class="ruby-keyword kw">end</span>
+180:                         <span class="ruby-keyword kw">end</span>
+181:                 <span class="ruby-keyword kw">end</span>
+182:                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">xhr?</span>
+183:                         <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;editdomains&quot;</span>
+184:                 <span class="ruby-keyword kw">end</span>
+185:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">deluser</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delete the user
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 29</span>
+29:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deluser</span>
+30:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+31:                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">xhr?</span>
+32:                         <span class="ruby-ivar">@edituser</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_first</span>([<span class="ruby-value str">&quot;id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>]])
+33:                         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@edituser</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+34:                                 <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">destroy</span>
+35:                         <span class="ruby-keyword kw">end</span>
+36:                 <span class="ruby-keyword kw">end</span>
+37:                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">:nothing=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword kw">true</span>
+38:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">editdomains</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to edit domains, add new domain.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 106</span>
+106:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">editdomains</span>
+107:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+108:                 <span class="ruby-ivar">@edituser</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_first</span>([<span class="ruby-value str">&quot;id = ?&quot;</span>,<span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:id</span>]])
+109:                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">nil?</span>
+110:                         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:domain</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">and</span> 
+111:                                 <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:domain</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\w+$/</span> <span class="ruby-keyword kw">and</span>
+112:                                 <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:domain_level</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\d+$/</span>
+113:                                 <span class="ruby-comment cmt">#if @edituser.domains.has_key?(@params[:post][:domain].upcase)</span>
+114:                                 <span class="ruby-comment cmt">#   flash.now['note'] = &quot;This user is already in this domain. Delete it first!&quot;</span>
+115:                                 <span class="ruby-comment cmt">#else</span>
+116:                                 <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">domains</span>[<span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:domain</span>].<span class="ruby-identifier">upcase</span>] = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:domain_level</span>]
+117:                                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">save</span>
+118:                                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'note'</span>] = <span class="ruby-value str">&quot;An error occured while saving the user&quot;</span>
+119:                                 <span class="ruby-keyword kw">end</span>
+120:                                 <span class="ruby-comment cmt">#end</span>
+121:                         <span class="ruby-keyword kw">else</span>
+122:                                 <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'note'</span>] = <span class="ruby-value str">&quot;You must enter a domain name using only ASCII&quot;</span>
+123:                         <span class="ruby-keyword kw">end</span>
+124:                 <span class="ruby-keyword kw">end</span>
+125:                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+126:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">edituser</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 40</span>
+ 40:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edituser</span>
+ 41:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+ 42:                 <span class="ruby-ivar">@edituser</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_first</span>([<span class="ruby-value str">&quot;id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>]])
+ 43:                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">post?</span>
+ 44:                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">nil?</span>
+ 45:                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">firstname</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:firstname</span>]
+ 46:                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">lastname</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:lastname</span>]
+ 47:                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">login</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:login</span>]
+ 48:                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">confirmed</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:confirmed</span>]
+ 49:                                 <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:delete_image</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+ 50:                                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">image</span> = <span class="ruby-keyword kw">nil</span>
+ 51:                                         <span class="ruby-identifier">expire_page</span> <span class="ruby-identifier">auth_url</span>(<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'image'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@edituser.login}.png&quot;</span>)
+ 52:                                 <span class="ruby-keyword kw">end</span>
+ 53:                         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:password</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">and</span> 
+ 54:                                 <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:password</span>] <span class="ruby-operator">==</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:passwordbis</span>] <span class="ruby-keyword kw">and</span>
+ 55:                                 <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:password</span>] <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;&quot;</span>
+ 56:                                 <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">password</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:password</span>]
+ 57:                         <span class="ruby-keyword kw">end</span>
+ 58:                         <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">email</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:email</span>]
+ 59:   
+ 60:                         <span class="ruby-identifier">notice</span> = <span class="ruby-value str">&quot;&quot;</span>
+ 61:                         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:image</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:image</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-keyword kw">and</span> 
+ 62:                                         <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:image</span>].<span class="ruby-identifier">original_filename</span>.<span class="ruby-identifier">empty?</span>
+ 63:                                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:image</span>].<span class="ruby-identifier">content_type</span>.<span class="ruby-identifier">chomp</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^image/</span>
+ 64:                                         <span class="ruby-identifier">notice</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;Your picture isn't an image !&quot;</span> 
+ 65:                                 <span class="ruby-keyword kw">else</span>
+ 66:   
+ 67:                                                 <span class="ruby-identifier">tempfile</span> = <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'tmp'</span>)
+ 68:                                         <span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">write</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:image</span>].<span class="ruby-identifier">read</span>
+ 69:                                         <span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">flush</span>
+ 70:                                         <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-identifier">open</span>(<span class="ruby-identifier">tempfile</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span>=<span class="ruby-value str">&quot;r&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+ 71:                                                 <span class="ruby-identifier">img</span> = <span class="ruby-keyword kw">nil</span>
+ 72:                                                 <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@params</span>[<span class="ruby-identifier">:edituser</span>][<span class="ruby-identifier">:image</span>].<span class="ruby-identifier">content_type</span>.<span class="ruby-identifier">chomp</span>
+ 73:                                                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;image/jpeg&quot;</span> <span class="ruby-keyword kw">then</span>
+ 74:                                                         <span class="ruby-identifier">img</span> = <span class="ruby-constant">GD</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">newFromJpeg</span>(<span class="ruby-identifier">f</span>)
+ 75:                                                 <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;image/png&quot;</span> <span class="ruby-keyword kw">then</span>
+ 76:                                                         <span class="ruby-identifier">img</span> = <span class="ruby-constant">GD</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">newFromPng</span>(<span class="ruby-identifier">f</span>)
+ 77:                                                 <span class="ruby-keyword kw">end</span>
+ 78:   
+ 79:                                                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">img</span>.<span class="ruby-identifier">nil?</span>
+ 80:                                                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">img</span>.<span class="ruby-identifier">bounds</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-ivar">@app</span>[<span class="ruby-identifier">:icon_size</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">img</span>.<span class="ruby-identifier">bounds</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-ivar">@app</span>[<span class="ruby-identifier">:icon_size</span>]
+ 81:                                                                 <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">image</span> = <span class="ruby-identifier">img</span>.<span class="ruby-identifier">pngStr</span>  <span class="ruby-comment cmt"># = @params[:post][:picture].read</span>
+ 82:                                                         <span class="ruby-keyword kw">else</span>
+ 83:                                                                 <span class="ruby-identifier">notice</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Your image isn't #{@app[:icon_size]}x#{@app[:icon_size]}!&quot;</span>
+ 84:                                                         <span class="ruby-keyword kw">end</span>
+ 85:                                                         <span class="ruby-identifier">img</span>.<span class="ruby-identifier">destroy</span>
+ 86:                                                 <span class="ruby-keyword kw">end</span>
+ 87:                                         }
+ 88:                                 <span class="ruby-keyword kw">end</span>
+ 89:                                         <span class="ruby-identifier">expire_page</span> <span class="ruby-identifier">auth_url</span>(<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'image'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@edituser.login}.png&quot;</span>)
+ 90:                         <span class="ruby-keyword kw">end</span>
+ 91:   
+ 92:                                 <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">notice</span>.<span class="ruby-identifier">empty?</span>
+ 93:                                         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-identifier">notice</span>
+ 94:                                 <span class="ruby-keyword kw">else</span>
+ 95:                                         <span class="ruby-keyword kw">if</span>  <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@edituser</span>.<span class="ruby-identifier">save</span>
+ 96:                                                 <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-value str">&quot;An error occured while saving the user.&quot;</span>
+ 97:                                         <span class="ruby-keyword kw">else</span>
+ 98:                                                 <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value str">'notice'</span>] = <span class="ruby-value str">&quot;Informations have been stored.&quot;</span>
+ 99:                                         <span class="ruby-keyword kw">end</span>
+100:                                 <span class="ruby-keyword kw">end</span>
+101:                 <span class="ruby-keyword kw">end</span>
+102:                 <span class="ruby-keyword kw">end</span>
+103:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 4</span>
+4:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+5:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+6:                 <span class="ruby-identifier">list</span>
+7:                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'list'</span>
+8:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">list</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 10</span>
+10:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
+11:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+12: 
+13:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:s</span>]
+14:                         <span class="ruby-ivar">@user_pages</span>, <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">paginate</span> <span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">:order_by</span> =<span class="ruby-operator">&gt;</span><span class="ruby-value str">'id desc'</span>, 
+15:                         <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">'login like ? or email like ? or firstname like ? or lastname like ?'</span>, 
+16:                                 <span class="ruby-value str">'%'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:s</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[']/</span>) { <span class="ruby-value str">'\\'</span><span class="ruby-operator">+</span><span class="ruby-identifier">$&amp;</span> } <span class="ruby-operator">+</span> <span class="ruby-value str">'%'</span>,
+17:                                 <span class="ruby-value str">'%'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:s</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[']/</span>) { <span class="ruby-value str">'\\'</span><span class="ruby-operator">+</span><span class="ruby-identifier">$&amp;</span> } <span class="ruby-operator">+</span> <span class="ruby-value str">'%'</span>,
+18:                                 <span class="ruby-value str">'%'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:s</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[']/</span>) { <span class="ruby-value str">'\\'</span><span class="ruby-operator">+</span><span class="ruby-identifier">$&amp;</span> } <span class="ruby-operator">+</span> <span class="ruby-value str">'%'</span>,
+19:                                 <span class="ruby-value str">'%'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:post</span>][<span class="ruby-identifier">:s</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[']/</span>) { <span class="ruby-value str">'\\'</span><span class="ruby-operator">+</span><span class="ruby-identifier">$&amp;</span> } <span class="ruby-operator">+</span> <span class="ruby-value str">'%'</span>]
+20:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>]
+21:                         <span class="ruby-ivar">@user_pages</span>, <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">paginate</span> <span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">:order_by</span> =<span class="ruby-operator">&gt;</span><span class="ruby-value str">'id desc'</span>, 
+22:                         <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">'domains like ?'</span>, <span class="ruby-value str">'%'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[']/</span>) { <span class="ruby-value str">'\\'</span><span class="ruby-operator">+</span><span class="ruby-identifier">$&amp;</span> } <span class="ruby-operator">+</span> <span class="ruby-value str">',%'</span>]
+23:                 <span class="ruby-keyword kw">else</span>
+24:                         <span class="ruby-ivar">@user_pages</span>, <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">paginate</span> <span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">:order_by</span> =<span class="ruby-operator">&gt;</span><span class="ruby-value str">'id desc'</span>
+25:                 <span class="ruby-keyword kw">end</span>
+26:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="#M000054" class="method-signature">
+          <span class="method-name">newuser</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used for new user
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 129</span>
+129:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">newuser</span>
+130:                 <span class="ruby-identifier">require_auth</span> <span class="ruby-value str">'admin'</span>
+131:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="#M000058" class="method-signature">
+          <span class="method-name">theme_layout</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 193</span>
+193:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">theme_layout</span>
+194:                 <span class="ruby-node">&quot;../authadmin/theme/#{@app[:themeadmin]}/layout.rhtml&quot;</span>
+195:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="#M000057" class="method-signature">
+          <span class="method-name">this_auth</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/controllers/authadmin_controller.rb, line 188</span>
+188:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">this_auth</span>
+189:                 <span class="ruby-ivar">@app</span>
+190:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

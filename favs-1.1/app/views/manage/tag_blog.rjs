@@ -1,0 +1,3 @@
+page.replace_html "tag_list_#{@subscription.id}", @subscription.tag_list
+page.toggle "tag_form_#{@subscription.id}"
+page.toggle "tag_display_#{@subscription.id}"

@@ -1,0 +1,16 @@
+xml.feevy do
+  for feed in @feeds
+    unless feed.nil?
+      xml.feed do
+        # Feed ID to ping in case of update
+        xml.id    feed.id
+        # RSS link to read
+        xml.rss   feed.link
+        unless feed.latest_post.nil?
+          # Post url to check update
+          xml.post  feed.latest_post.url
+        end
+      end
+    end
+  end
+end

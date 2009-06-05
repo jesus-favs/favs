@@ -1,0 +1,12 @@
+<div class="content3">
+  
+  <h2>Last step!</h2>
+  <p>Please, let me know the name and the mail of the pupil</p>
+  
+
+  
+    
+
+  <h2><%= link_to "done, let's go back to my feevy", :action => "avatar_selected" %></h2>
+  
+</div>
